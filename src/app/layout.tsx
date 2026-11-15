@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
+import { Footer } from "@/components/site/Footer";
+import { Header } from "@/components/site/Header";
 import "./globals.css";
 
 const manrope = Manrope({
-  variable: "--font-manrope",
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space",
+const space = Space_Grotesk({
+  variable: "--font-display-face",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Web Product Creator | Digital marketing and software development",
+  title: "Web Product Creator | Digital marketing and SaaS development",
   description:
-    "One team for software development and digital marketing. We build your product, then bring the customers.",
+    "Strategic digital marketing and SaaS development for businesses that want long-term growth.",
   icons: { icon: "/logo.png" },
 };
 
@@ -27,10 +28,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${manrope.variable} ${space.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-bg font-sans text-ink">
-        {children}
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -1,40 +1,36 @@
 @import "tailwindcss";
 
+/* Counterplay-inspired theme: black, white, red */
 :root {
-  --bg: #f0ebe8;
-  --surface: #ffffff;
-  --ink: #300a28;
-  --muted: #5d4657;
-  --plum: #300a28;
-  --violet: #8554c0;
-  --lilac: #b877f2;
-  --orange: #ff5a34;
-  --rust: #d1442a;
-  --deep: #ae3622;
-  --line: #dccfca;
-  --cream: #f7f2ef;
+  --bg: #050505;
+  --bg-soft: #111111;
+  --bg-card: #161616;
+  --surface: #1a1a1a;
+  --ink: #ffffff;
+  --muted: #9ca3af;
+  --line: #2a2a2a;
+  --accent: #ef2328;
+  --accent-hover: #ff3b3b;
+  --cream: #f5f5f5;
 }
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-bg-card: var(--bg-card);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-plum: var(--plum);
-  --color-violet: var(--violet);
-  --color-lilac: var(--lilac);
-  --color-orange: var(--orange);
-  --color-rust: var(--rust);
-  --color-deep: var(--deep);
   --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-cream: var(--cream);
-  --font-sans: var(--font-manrope), "Segoe UI", sans-serif;
-  --font-display: var(--font-space), "Segoe UI", sans-serif;
+  --font-sans: var(--font-body), "Segoe UI", sans-serif;
+  --font-display: var(--font-display-face), "Segoe UI", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -43,25 +39,24 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 17px;
-  line-height: 1.6;
-  overflow-x: hidden;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--orange) 40%, white);
-  color: var(--plum);
+  background: color-mix(in srgb, var(--accent) 40%, black);
+  color: white;
 }
 
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   line-height: 1.05;
 }
 
 .wrap {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1180px;
   margin-inline: auto;
   padding-inline: 24px;
 }
@@ -70,137 +65,70 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--orange);
-  color: #1d0618;
-  font-family: var(--font-sans);
+  background: var(--accent);
+  color: #fff;
   font-weight: 700;
   text-decoration: none;
-  padding: 14px 26px;
+  padding: 14px 28px;
   border-radius: 999px;
   border: 0;
-  font-size: 16px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 5px 0 var(--deep);
-  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
-  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .btn:hover {
-  background: var(--lilac);
+  background: var(--accent-hover);
 }
 
-.btn:active {
-  transform: translateY(4px);
-  box-shadow: 0 1px 0 var(--deep);
-}
-
-.btn-alt {
+.btn-outline {
   background: transparent;
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  box-shadow: 0 5px 0 var(--violet);
+  color: #fff;
+  border: 1.5px solid #fff;
 }
 
-.btn-alt:hover {
-  background: var(--ink);
-  color: var(--bg);
+.btn-outline:hover {
+  background: #fff;
+  color: #000;
 }
 
-.btn-on-dark {
-  box-shadow: 0 5px 0 #6a1f14;
+.section {
+  padding: 88px 0;
 }
 
-.card-3d {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  padding: 36px;
-  border-radius: 6px 28px 6px 28px;
-  box-shadow: 0 24px 40px -26px rgba(48, 10, 40, 0.5);
-  transform-style: preserve-3d;
-  transition: box-shadow 0.25s ease;
-  will-change: transform;
-}
-
-.card-3d:hover {
-  box-shadow: 0 36px 60px -26px rgba(133, 84, 192, 0.55);
-}
-
-.card-3d.accent-orange {
-  border-top: 8px solid var(--orange);
-}
-
-.card-3d.accent-violet {
-  border-top: 8px solid var(--violet);
-}
-
-.card-3d.accent-lilac {
-  border-top: 8px solid var(--lilac);
-}
-
-.diamond-bullet {
-  position: relative;
-  padding: 11px 0 11px 28px;
-  border-top: 1px solid var(--line);
-}
-
-.diamond-bullet::before {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 19px;
-  width: 10px;
-  height: 10px;
-  transform: rotate(45deg);
-  background: var(--lilac);
-}
-
-.diamond-bullet.orange::before {
-  background: var(--rust);
-}
-
-.step-panel {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 18px 18px 22px;
-  border-radius: 4px 20px 4px 20px;
-  border-top: 3px solid var(--lilac);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 20px 30px -22px #000;
-}
-
-.hero-glow {
-  background:
-    radial-gradient(55% 50% at 78% 72%, rgba(184, 119, 242, 0.38), transparent 70%),
-    radial-gradient(40% 40% at 15% 95%, rgba(255, 90, 52, 0.24), transparent 70%);
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .field {
   width: 100%;
   font: inherit;
   color: var(--ink);
-  background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: 8px;
-  padding: 12px 14px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
   outline: none;
 }
 
 .field:focus {
-  border-color: var(--orange);
+  border-color: var(--accent);
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.img-cover {
+  object-fit: cover;
 }
 
-@keyframes industries-scroll {
+@keyframes marquee {
   from {
     transform: translateX(0);
   }
@@ -209,30 +137,8 @@ body {
   }
 }
 
-.industries-marquee {
-  animation: industries-scroll 28s linear infinite;
-}
-
-.industries-track {
-  animation: industries-scroll 36s linear infinite;
-}
-
-.industries-track:hover {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .btn,
-  .card-3d {
-    transition: none;
-  }
-
-  .industries-marquee,
-  .industries-track {
-    animation: none;
+@media (max-width: 768px) {
+  .section {
+    padding: 64px 0;
   }
 }
